@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class SnapshotWindow: UIWindow {
-    override var safeAreaInsets: UIEdgeInsets {
+public final class SnapshotWindow: UIWindow {
+    public override var safeAreaInsets: UIEdgeInsets {
         // To get same results from simulators with and without notch/home indicator,
         // we use the values that are equal to or greater than the safe area insets.
         UIEdgeInsets(top: 44, left: 0, bottom: 34, right: 0)

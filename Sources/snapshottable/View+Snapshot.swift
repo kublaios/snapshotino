@@ -14,7 +14,7 @@ enum SnapshottableError: Error {
 
 // MARK: - Snapshottable protocol
 
-protocol Snapshottable {
+public protocol Snapshottable {
     func inSnapshotWindow(sized: CGSize) -> SnapshotWindow
     func snapshot(sized: CGSize, record: Bool, file: String) throws -> UIImage
 }
@@ -33,7 +33,7 @@ extension Snapshottable {
     /// - Returns: The snapshot image.
     ///
     /// - Throws: `SnapshottableError` if the snapshot cannot be taken or the snapshot is being recorded.
-    func snapshot(sized: CGSize = .iPhone11, record: Bool = false, file: String = #file) throws -> UIImage {
+    public func snapshot(sized: CGSize, record: Bool = false, file: String = #file) throws -> UIImage {
         guard let snapshot = inSnapshotWindow(sized: sized).asImage else {
             throw SnapshottableError.unavailableWindowSnapshot
         }
@@ -56,7 +56,7 @@ struct SnapshottableView<Content>: View, Snapshottable where Content: View {
         content
     }
 
-    func inSnapshotWindow(sized: CGSize = .iPhone11) -> SnapshotWindow {
+    func inSnapshotWindow(sized: CGSize) -> SnapshotWindow {
         let window = SnapshotWindow(frame: .init(origin: .zero, size: sized))
         window.rootViewController = UIHostingController(rootView: self)
         window.isHidden = false
@@ -75,7 +75,7 @@ extension View {
 // MARK: - `UIView`+`Snapshottable`
 
 extension UIView: Snapshottable {
-    func inSnapshotWindow(sized: CGSize = .iPhone11) -> SnapshotWindow {
+    public func inSnapshotWindow(sized: CGSize) -> SnapshotWindow {
         let window = SnapshotWindow(frame: .init(origin: .zero, size: sized))
         window.rootViewController = {
             let controller = UIViewController()
@@ -90,16 +90,10 @@ extension UIView: Snapshottable {
 // MARK: - `UIViewController`+`Snapshottable`
 
 extension UIViewController: Snapshottable {
-    func inSnapshotWindow(sized: CGSize = .iPhone11) -> SnapshotWindow {
+    public func inSnapshotWindow(sized: CGSize) -> SnapshotWindow {
         let window = SnapshotWindow(frame: .init(origin: .zero, size: sized))
         window.rootViewController = self
         window.isHidden = false
         return window
     }
-}
-
-// MARK: - Helper extension for screen size constants
-
-private extension CGSize {
-    static let iPhone11 = CGSize(width: 414, height: 896)
 }

@@ -7,7 +7,7 @@
 
 import XCTest
 
-extension XCTestCase {
+public extension XCTestCase {
     /// Asserts that the given `Snapshottable` object matches the previously recorded snapshot.
     ///
     /// - Parameters:
@@ -16,12 +16,13 @@ extension XCTestCase {
     ///   - tolerance: The tolerance for the snapshot comparison. The default value is `0`, the maximum value is `1.0` (100%).
     func assertSnapshot(
         of snapshottable: Snapshottable,
+        on screenSize: SnapshottableScreenSize = .iPhone11,
         record: Bool = false,
         tolerance: CGFloat = .zero,
         file: StaticString = #file,
         line: UInt = #line
     ) throws {
-        let actualImage = try snapshottable.snapshot(record: record)
+        let actualImage = try snapshottable.snapshot(sized: screenSize, record: record)
         let expectedImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable)
 
         let isEqual = actualImage.compare(with: expectedImage, tolerance: tolerance)

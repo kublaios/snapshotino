@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import snapshottable
 
 final class SnapshotFileURLBuilderTests: XCTestCase {
     let fileManager: FileManager = .default

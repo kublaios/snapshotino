@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import UIKit
+@testable import snapshottable
 
 final class SnapshotRecorderTests: XCTestCase {
     let fileManager: FileManager = .default

@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import UIKit
+@testable import snapshottable
 
 final class SnapshotRetrieverTests: XCTestCase {
     let retriever = SnapshotRetriever()

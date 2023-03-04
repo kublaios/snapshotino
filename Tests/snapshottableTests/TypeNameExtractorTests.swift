@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import snapshottable
 
 final class TypeNameExtractorTests: XCTestCase {
     func testExtractWithAngleBrackets() {
