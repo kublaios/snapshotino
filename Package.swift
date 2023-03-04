@@ -7,7 +7,7 @@ let package = Package(
     name: "snapshottable",
     defaultLocalization: "en",
     platforms: [
-        .iOS("14.5")
+        .iOS("14.0")
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
