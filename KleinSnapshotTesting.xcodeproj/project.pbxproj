@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E1E3E7C29B2B01400A740A7 /* XCTestCase+SnapshotAssertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E3E7B29B2B01400A740A7 /* XCTestCase+SnapshotAssertion.swift */; };
 		3E3E9AE829AD4B8B00921335 /* KleinSnapshotTestingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E9AE729AD4B8B00921335 /* KleinSnapshotTestingApp.swift */; };
 		3E3E9AEA29AD4B8B00921335 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E9AE929AD4B8B00921335 /* ContentView.swift */; };
 		3E3E9AEC29AD4B8D00921335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E3E9AEB29AD4B8D00921335 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E1E3E7B29B2B01400A740A7 /* XCTestCase+SnapshotAssertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+SnapshotAssertion.swift"; sourceTree = "<group>"; };
 		3E3E9AE429AD4B8B00921335 /* KleinSnapshotTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KleinSnapshotTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3E9AE729AD4B8B00921335 /* KleinSnapshotTestingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KleinSnapshotTestingApp.swift; sourceTree = "<group>"; };
 		3E3E9AE929AD4B8B00921335 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				3E3E9AF829AD4B8D00921335 /* KleinSnapshotTestingTests.swift */,
+				3E1E3E7B29B2B01400A740A7 /* XCTestCase+SnapshotAssertion.swift */,
 				3EF406C729B2996E001ECDCE /* UIImage+Compare.swift */,
 				3EF406C929B29EE2001ECDCE /* UIImageTests.swift */,
 				3ECF642329AE92E700CA27AD /* View+Snapshot.swift */,
@@ -287,6 +290,7 @@
 				3EF406C229B15B44001ECDCE /* SnapshotRetriever.swift in Sources */,
 				3EF406BC29B14AE2001ECDCE /* SnapshotRecorder.swift in Sources */,
 				3EF406BE29B1519F001ECDCE /* SnapshotFileURLBuilderTests.swift in Sources */,
+				3E1E3E7C29B2B01400A740A7 /* XCTestCase+SnapshotAssertion.swift in Sources */,
 				3EF406B629B13C55001ECDCE /* TypeNameExtractor.swift in Sources */,
 				3EF406C429B15B64001ECDCE /* SnapshotRetrieverTests.swift in Sources */,
 				3EF406CA29B29EE2001ECDCE /* UIImageTests.swift in Sources */,

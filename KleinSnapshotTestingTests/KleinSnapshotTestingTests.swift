@@ -10,22 +10,6 @@ import XCTest
 import SwiftUI
 import UIKit
 
-extension XCTestCase {
-    func assertSnapshot(
-        of snapshottable: Snapshottable,
-        record: Bool = false,
-        tolerance: CGFloat = .zero,
-        file: StaticString = #file,
-        line: UInt = #line
-    ) throws {
-        let actualImage = try snapshottable.snapshot(record: record)
-        let expectedImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable)
-
-        let isEqual = actualImage.compare(with: expectedImage, tolerance: tolerance)
-        XCTAssertTrue(isEqual, file: file, line: line)
-    }
-}
-
 final class KleinSnapshotTestingTests: XCTestCase {
     func testExample() throws {
         try assertSnapshot(of: SampleViewController())
