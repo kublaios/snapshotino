@@ -8,6 +8,7 @@
 import Foundation
 
 enum TypeNameExtractor {
+    /// Extracts the type name from a string.
     static func extract(from string: String) -> String {
         var result = string
         var start = string.startIndex

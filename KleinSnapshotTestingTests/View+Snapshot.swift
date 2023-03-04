@@ -22,6 +22,17 @@ protocol Snapshottable {
 // MARK: - Snapshottable `snapshot(sized:record:file:)` default implementation
 
 extension Snapshottable {
+    /// Takes a snapshot of the object.
+    ///
+    /// - Parameters:
+    ///   - sized: The size of the snapshot window.
+    ///   - record: Whether to record the snapshot to the file system.
+    ///   - file: The path of any file at the folder where the snapshot will be placed.
+    ///     Ideally, this is the path of the test file so that the snapshots are placed in the same directory as the test file.
+    ///
+    /// - Returns: The snapshot image.
+    ///
+    /// - Throws: `SnapshottableError` if the snapshot cannot be taken or the snapshot is being recorded.
     func snapshot(sized: CGSize = .iPhone11, record: Bool = false, file: String = #file) throws -> UIImage {
         guard let snapshot = inSnapshotWindow(sized: sized).asImage else {
             throw SnapshottableError.unavailableWindowSnapshot
