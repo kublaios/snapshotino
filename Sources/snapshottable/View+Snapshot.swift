@@ -49,14 +49,14 @@ extension Snapshottable {
 
 // MARK: - Type erasure for making `SwiftUI.View` conform to `Snapshottable`
 
-struct SnapshottableView<Content>: View, Snapshottable where Content: View {
+public struct SnapshottableView<Content>: View, Snapshottable where Content: View {
     let content: Content
 
-    var body: some View {
+    public var body: some View {
         content
     }
 
-    func inSnapshotWindow(sized: CGSize) -> SnapshotWindow {
+    public func inSnapshotWindow(sized: CGSize) -> SnapshotWindow {
         let window = SnapshotWindow(frame: .init(origin: .zero, size: sized))
         window.rootViewController = UIHostingController(rootView: self)
         window.isHidden = false
@@ -66,7 +66,7 @@ struct SnapshottableView<Content>: View, Snapshottable where Content: View {
 
 // MARK: - `SwiftUI.View`+`Snapshottable`
 
-extension View {
+public extension View {
     var asSnapshottableView: SnapshottableView<Self> {
         SnapshottableView(content: self)
     }
