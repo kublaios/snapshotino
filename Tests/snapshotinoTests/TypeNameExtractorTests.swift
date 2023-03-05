@@ -1,12 +1,12 @@
 //
 //  TypeNameExtractorTests.swift
-//  KleinSnapshotTestingTests
+//  snapshotinoTests
 //
 //  Created by Kubilay Erdogan on 2023-03-02.
 //
 
 import XCTest
-@testable import snapshottable
+@testable import snapshotino
 
 final class TypeNameExtractorTests: XCTestCase {
     func testExtractWithAngleBrackets() {

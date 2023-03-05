@@ -1,13 +1,13 @@
 //
 //  SnapshotRetrieverTests.swift
-//  KleinSnapshotTestingTests
+//  snapshotinoTests
 //
 //  Created by Kubilay Erdogan on 2023-03-02.
 //
 
 import XCTest
 import UIKit
-@testable import snapshottable
+@testable import snapshotino
 
 final class SnapshotRetrieverTests: XCTestCase {
     let retriever = SnapshotRetriever()

@@ -1,6 +1,6 @@
 //
 //  UIImage+Compare.swift
-//  KleinSnapshotTestingTests
+//  snapshotino
 //
 //  Created by Kubilay Erdogan on 2023-03-03.
 //
