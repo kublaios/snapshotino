@@ -1,5 +1,5 @@
 //
-//  ViewExtension.swift
+//  View+Snapshot.swift
 //  snapshotino
 //
 //  Created by Kubilay Erdogan on 2023-02-28.
