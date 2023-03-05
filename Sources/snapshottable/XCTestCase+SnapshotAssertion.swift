@@ -23,10 +23,20 @@ public extension XCTestCase {
         line: UInt = #line
     ) throws {
         let filePath = file.withUTF8Buffer { String(decoding: $0, as: UTF8.self) }
-        let actualImage = try snapshottable.snapshot(sized: screenSize, record: record, filePath: filePath)
-        let expectedImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable, filePath: filePath)
+        let expectedImage = try snapshottable.snapshot(sized: screenSize, record: record, filePath: filePath)
+        let actualImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable, filePath: filePath)
 
-        let isEqual = actualImage.compare(with: expectedImage, tolerance: tolerance)
+        add(makeAttachment(from: actualImage, label: "Actual image"))
+        add(makeAttachment(from: expectedImage, label: "Expected image"))
+
+        let isEqual = expectedImage.compare(with: actualImage, tolerance: tolerance)
         XCTAssertTrue(isEqual, file: file, line: line)
+    }
+
+    private func makeAttachment(from image: UIImage, label: String) -> XCTAttachment {
+        let attachment = XCTAttachment(image: image)
+        attachment.lifetime = .deleteOnSuccess
+        attachment.name = label
+        return attachment
     }
 }
