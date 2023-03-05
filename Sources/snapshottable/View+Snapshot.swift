@@ -16,7 +16,7 @@ enum SnapshottableError: Error {
 
 public protocol Snapshottable {
     func inSnapshotWindow(sized: CGSize) -> SnapshotWindow
-    func snapshot(sized: CGSize, record: Bool, file: String) throws -> UIImage
+    func snapshot(sized: CGSize, record: Bool, filePath: String) throws -> UIImage
 }
 
 // MARK: - Snapshottable `snapshot(sized:record:file:)` default implementation
@@ -27,19 +27,19 @@ extension Snapshottable {
     /// - Parameters:
     ///   - sized: The size of the snapshot window.
     ///   - record: Whether to record the snapshot to the file system.
-    ///   - file: The path of any file at the folder where the snapshot will be placed.
+    ///   - filePath: The path of any file at the folder where the snapshot will be placed.
     ///     Ideally, this is the path of the test file so that the snapshots are placed in the same directory as the test file.
     ///
     /// - Returns: The snapshot image.
     ///
     /// - Throws: `SnapshottableError` if the snapshot cannot be taken or the snapshot is being recorded.
-    public func snapshot(sized: CGSize, record: Bool = false, file: String = #file) throws -> UIImage {
+    public func snapshot(sized: CGSize, record: Bool = false, filePath: String = #file) throws -> UIImage {
         guard let snapshot = inSnapshotWindow(sized: sized).asImage else {
             throw SnapshottableError.unavailableWindowSnapshot
         }
 
         if record {
-            try SnapshotRecorder().record(snapshot, ofType: type(of: self), nextTo: file)
+            try SnapshotRecorder().record(snapshot, ofType: type(of: self), nextTo: filePath)
             throw SnapshottableError.recordingEnabled
         }
 

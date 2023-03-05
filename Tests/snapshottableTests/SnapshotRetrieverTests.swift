@@ -37,7 +37,7 @@ final class SnapshotRetrieverTests: XCTestCase {
         let expectedImageData = expectedImage.pngData()!
         try expectedImageData.write(to: URL(fileURLWithPath: snapshotDir + "/MockSnapshottable.png"))
 
-        let actualImage = try retriever.retrieveSnapshot(of: MockSnapshottable(), file: snapshotDir)
+        let actualImage = try retriever.retrieveSnapshot(of: MockSnapshottable(), filePath: snapshotDir)
 
         XCTAssertTrue(expectedImage.compare(with: actualImage))
     }

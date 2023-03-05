@@ -22,8 +22,9 @@ public extension XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) throws {
-        let actualImage = try snapshottable.snapshot(sized: screenSize, record: record)
-        let expectedImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable)
+        let filePath = file.withUTF8Buffer { String(decoding: $0, as: UTF8.self) }
+        let actualImage = try snapshottable.snapshot(sized: screenSize, record: record, filePath: filePath)
+        let expectedImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable, filePath: filePath)
 
         let isEqual = actualImage.compare(with: expectedImage, tolerance: tolerance)
         XCTAssertTrue(isEqual, file: file, line: line)
