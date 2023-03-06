@@ -18,7 +18,8 @@ struct SnapshotFileURLBuilder {
     ///
     /// - Parameters:
     ///   - filePath: The path of any file at the folder where the snapshot will be placed.
-    ///     Ideally, this is the path of the test file so that the snapshots are placed in the same directory as the test file.
+    ///     Ideally, this is the path of the test file so that the snapshots are placed
+    ///     in the same directory as the test file.
     ///   - type: The Swift type of the object being snapshotted. It is used to create the file name.
     ///   - subDirectory: Optional subdirectory name. Defaults to `__snapshots__`.
     ///   - createSubdirectoryIfMissing: Whether to create the subdirectory if it is missing.

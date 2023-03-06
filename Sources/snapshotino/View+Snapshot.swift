@@ -14,25 +14,42 @@ enum SnapshottableError: Error {
 
 // MARK: - Snapshottable protocol
 
+/// Members of this protocol can be snapshot-tested by `Snapshotino` library.
+///
+/// `SwiftUI.View`, `UIView`, and `UIViewController` already conform to this protocol.
 public protocol Snapshottable {
+    /// Returns a type of `SnapshotWindow` that should contain the `Snapshottable` instance.
+    ///
+    /// - Parameters:
+    ///   - sized: The size of the returned `SnapshotWindow` object.
+    ///
+    /// The default implementation of `snapshot(sized:record:filePath:)` method uses
+    /// the returned object to take the snapshot.
     func inSnapshotWindow(sized: CGSize) -> SnapshotWindow
+
+    /// Takes a snapshot of the object.
+    ///
+    /// - Parameters:
+    ///   - sized: The size of the snapshot.
+    ///   - record: Whether to save the snapshot in the file system.
+    ///     The new snapshot will override the existing one.
+    ///     The test will fail when this is set to `true`.
+    ///   - filePath: The path of any file at the folder where the snapshot will be placed.
+    ///     Points to the file calling the method by default.
+    ///     Ideally, this is the path of the test file so that the snapshots are placed
+    ///     in the same directory as the test file.
+    ///
+    /// - Returns: The snapshot image.
+    ///
+    /// - Throws: `SnapshottableError` if the snapshot cannot be taken or the snapshot is being recorded.
+    /// The default implementation of this method uses the returned object
+    /// from `isSnapshotWindow(sized:)` to take the snapshot.
     func snapshot(sized: CGSize, record: Bool, filePath: String) throws -> UIImage
 }
 
 // MARK: - Snapshottable `snapshot(sized:record:file:)` default implementation
 
 extension Snapshottable {
-    /// Takes a snapshot of the object.
-    ///
-    /// - Parameters:
-    ///   - sized: The size of the snapshot window.
-    ///   - record: Whether to record the snapshot to the file system.
-    ///   - filePath: The path of any file at the folder where the snapshot will be placed.
-    ///     Ideally, this is the path of the test file so that the snapshots are placed in the same directory as the test file.
-    ///
-    /// - Returns: The snapshot image.
-    ///
-    /// - Throws: `SnapshottableError` if the snapshot cannot be taken or the snapshot is being recorded.
     public func snapshot(sized: CGSize, record: Bool = false, filePath: String = #file) throws -> UIImage {
         guard let snapshot = inSnapshotWindow(sized: sized).asImage else {
             throw SnapshottableError.unavailableWindowSnapshot

@@ -22,7 +22,7 @@ That's it!
 ## Author's note
 If you are looking for a library that you will use on your production app, you should probably consider more powerful tools like [pointfreeco/swift-snapshot-testing](https://github.com/pointfreeco/swift-snapshot-testing) or [uber/ios-snapshot-test-case](https://github.com/uber/ios-snapshot-test-case). This library is more of a pet project than a finished product. I wanted to snapshot-test the small apps and components I build for fun without importing a full-blown 3rd party for my limited use case.
 
-As an uninteresting fact, this is also why I tried to imply the small size of the initiative in the project name, by using the -ino suffix, which appears to be a common diminutive suffix in Italian.
+As a less interesting fact, this is also why I tried to imply the small size of the initiative in the project name, by using the -ino suffix, which appears to be a common diminutive suffix in Italian.
 
 ## How to use
 If you still want to use this library, here's how:
