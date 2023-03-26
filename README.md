@@ -25,7 +25,6 @@ If you are looking for a library that you will use on your production app, you s
 As a less interesting fact, this is also why I tried to imply the small size of the initiative in the project name, by using the -ino suffix, which appears to be a common diminutive suffix in Italian.
 
 ## How to use
-If you still want to use this library, here's how:
 - Add the library as a dependency using Swift Package Manager
 - Import `snapshotino` in your `XCTestCase` implementation
 - Use `assertSnapshot` to record and compare snapshots, examples below
@@ -60,6 +59,9 @@ func testView() throws {
 ```
 
 Note that `SwiftUI.View` cannot be used directly because it's not a concrete type. We use the `asSnapshottableView` property instead, which will return a wrapper type that can be passed to `assertSnapshot`.
+
+### Sample project
+https://github.com/kublaios/KleinSnapshotTesting
 
 ## License
 This project is released under the MIT license. See [LICENSE](LICENSE) for details.
