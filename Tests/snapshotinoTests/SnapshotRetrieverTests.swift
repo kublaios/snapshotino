@@ -35,15 +35,15 @@ final class SnapshotRetrieverTests: XCTestCase {
             orientation: .up
         )
         let expectedImageData = expectedImage.pngData()!
-        try expectedImageData.write(to: URL(fileURLWithPath: snapshotDir + "/MockSnapshottable.png"))
+        try expectedImageData.write(to: URL(fileURLWithPath: snapshotDir + "/MockSnapshottable_testRetrieveSnapshot_existingSnapshot_returnsImage.png"))
 
-        let actualImage = try retriever.retrieveSnapshot(of: MockSnapshottable(), filePath: snapshotDir)
+        let actualImage = try retriever.retrieveSnapshot(of: MockSnapshottable(), filePath: snapshotDir, function: #function)
 
         XCTAssertTrue(expectedImage.compare(with: actualImage))
     }
     
     func testRetrieveSnapshot_nonexistentSnapshot_throwsError() throws {
-        XCTAssertThrowsError(try retriever.retrieveSnapshot(of: MockSnapshottable()))
+        XCTAssertThrowsError(try retriever.retrieveSnapshot(of: MockSnapshottable(), function: #function))
     }
     
     func testRetrieveSnapshot_invalidImageData_throwsError() throws {
@@ -52,7 +52,7 @@ final class SnapshotRetrieverTests: XCTestCase {
 
         try invalidImageData.write(to: URL(fileURLWithPath: snapshotDir + "/MockSnapshottable.png"))
         
-        XCTAssertThrowsError(try retriever.retrieveSnapshot(of: mockSnapshottable))
+        XCTAssertThrowsError(try retriever.retrieveSnapshot(of: mockSnapshottable, function: #function))
     }
 }
 
