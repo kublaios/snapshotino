@@ -23,11 +23,10 @@ final class SnapshotFileURLBuilderTests: XCTestCase {
     func testBuildSnapshotFileURL() throws {
         let filePath = tempDirectory.appendingPathComponent("test/image.png").path
 
-        let callingMethod = #function.replacingOccurrences(of: "()", with: "")
         let url = try builder.build(
             nextTo: filePath,
             forType: SnapshotFileURLBuilderTests.self,
-            callingMethod: callingMethod
+            function: #function
         )
 
         XCTAssertEqual(url.path, "\(tempDirectory.path)/test/__snapshots__/SnapshotFileURLBuilderTests_testBuildSnapshotFileURL.png")
@@ -37,11 +36,10 @@ final class SnapshotFileURLBuilderTests: XCTestCase {
     func testBuildSnapshotFileURLWithMissingDirectory() throws {
         let filePath = tempDirectory.appendingPathComponent("test/image.png").path
 
-        let callingMethod = #function.replacingOccurrences(of: "()", with: "")
         let url = try builder.build(
             nextTo: filePath,
             forType: SnapshotFileURLBuilderTests.self,
-            callingMethod: callingMethod,
+            function: #function,
             subDirectory: "missing"
         )
 
@@ -52,11 +50,10 @@ final class SnapshotFileURLBuilderTests: XCTestCase {
     func testBuildSnapshotFileURLWithMissingDirectoryAndCreateSubdirectory() throws {
         let filePath = tempDirectory.appendingPathComponent("test/image.png").path
 
-        let callingMethod = #function.replacingOccurrences(of: "()", with: "")
         let url = try builder.build(
             nextTo: filePath,
             forType: SnapshotFileURLBuilderTests.self,
-            callingMethod: callingMethod,
+            function: #function,
             subDirectory: "missing",
             createSubdirectoryIfMissing: true
         )

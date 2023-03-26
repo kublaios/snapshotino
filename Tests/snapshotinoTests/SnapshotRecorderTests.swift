@@ -40,7 +40,7 @@ final class SnapshotRecorderTests: XCTestCase {
         let expectedDirectoryPath = tempDirectory.appendingPathComponent("__snapshots__").path
 
         let snapshotFilePath = tempDirectory.appendingPathComponent("TestViewController.swift")
-        try snapshotRecorder.record(image, ofType: UIImage.self, nextTo: snapshotFilePath.path)
+        try snapshotRecorder.record(image, ofType: UIImage.self, nextTo: snapshotFilePath.path, function: #function)
 
         let fileManager = fileManager
         let files = try fileManager.contentsOfDirectory(atPath: expectedDirectoryPath)
@@ -54,7 +54,7 @@ final class SnapshotRecorderTests: XCTestCase {
         let invalidImage = UIImage(ciImage: CIImage()) // an invalid image that can't be processed
 
         XCTAssertThrowsError(
-            try snapshotRecorder.record(invalidImage, ofType: UIImage.self, nextTo: snapshotFilePath.path)
+            try snapshotRecorder.record(invalidImage, ofType: UIImage.self, nextTo: snapshotFilePath.path, function: #function)
         )
     }
 }

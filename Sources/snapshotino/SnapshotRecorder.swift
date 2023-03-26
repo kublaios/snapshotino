@@ -20,19 +20,19 @@ struct SnapshotRecorder {
     ///   - type: The Swift type of the object being snapshotted. It is used as the file name.
     ///   - filePath: The path of any file at the folder where the snapshot will be placed.
     ///     Ideally, this is the path of the test file so that the snapshots are placed in the same directory as the test file.
+    ///   - function: The calling method. This value is appended to the snapshot file name.
     ///
     /// - Throws: `SnapshotRecorderError` if the image cannot be processed or written to the file system.
-    func record(_ snapshot: UIImage, ofType type: Any.Type, nextTo filePath: String, function: String = #function) throws {
+    func record(_ snapshot: UIImage, ofType type: Any.Type, nextTo filePath: String, function: String) throws {
         guard let imageData = snapshot.pngData() else {
             throw SnapshotRecorderError.imageProcessingError
         }
 
-        let callingMethod = function.replacingOccurrences(of: "()", with: "")
         let recordAtURL = try SnapshotFileURLBuilder()
             .build(
                 nextTo: filePath,
                 forType: type,
-                callingMethod: callingMethod,
+                function: function,
                 createSubdirectoryIfMissing: true
             )
 

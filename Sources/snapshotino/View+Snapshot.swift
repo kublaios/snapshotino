@@ -38,25 +38,26 @@ public protocol Snapshottable {
     ///     Points to the file calling the method by default.
     ///     Ideally, this is the path of the test file so that the snapshots are placed
     ///     in the same directory as the test file.
+    ///   - function: The calling method. This value is appended to the snapshot file name.
     ///
     /// - Returns: The snapshot image.
     ///
     /// - Throws: `SnapshottableError` if the snapshot cannot be taken or the snapshot is being recorded.
     /// The default implementation of this method uses the returned object
     /// from `isSnapshotWindow(sized:)` to take the snapshot.
-    func snapshot(sized: CGSize, record: Bool, filePath: String) throws -> UIImage
+    func snapshot(sized: CGSize, record: Bool, filePath: String, function: String) throws -> UIImage
 }
 
 // MARK: - Snapshottable `snapshot(sized:record:file:)` default implementation
 
 extension Snapshottable {
-    public func snapshot(sized: CGSize, record: Bool = false, filePath: String = #file) throws -> UIImage {
+    public func snapshot(sized: CGSize, record: Bool = false, filePath: String = #file, function: String) throws -> UIImage {
         guard let snapshot = inSnapshotWindow(sized: sized).asImage else {
             throw SnapshottableError.unavailableWindowSnapshot
         }
 
         if record {
-            try SnapshotRecorder().record(snapshot, ofType: type(of: self), nextTo: filePath)
+            try SnapshotRecorder().record(snapshot, ofType: type(of: self), nextTo: filePath, function: function)
             throw SnapshottableError.recordingEnabled
         }
 

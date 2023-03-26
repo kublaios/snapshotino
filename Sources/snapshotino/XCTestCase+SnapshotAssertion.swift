@@ -24,11 +24,12 @@ public extension XCTestCase {
         record: Bool = false,
         tolerance: CGFloat = .zero,
         file: StaticString = #file,
+        function: String = #function,
         line: UInt = #line
     ) throws {
         let filePath = file.withUTF8Buffer { String(decoding: $0, as: UTF8.self) }
-        let expectedImage = try snapshottable.snapshot(sized: screenSize, record: record, filePath: filePath)
-        let actualImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable, filePath: filePath)
+        let expectedImage = try snapshottable.snapshot(sized: screenSize, record: record, filePath: filePath, function: function)
+        let actualImage = try SnapshotRetriever().retrieveSnapshot(of: snapshottable, filePath: filePath, function: function)
 
         add(makeAttachment(from: actualImage, label: "Actual image"))
         add(makeAttachment(from: expectedImage, label: "Expected image"))
