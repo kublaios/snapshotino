@@ -25,8 +25,14 @@ struct SnapshotRetriever {
     /// - Returns: The snapshot image.
     ///
     /// - Throws: `SnapshotRetrieverError` if the image cannot be retrieved or created.
-    func retrieveSnapshot(of snapshottable: Snapshottable, filePath: String = #file) throws -> UIImage {
-        let retrieveFromURL = try SnapshotFileURLBuilder().build(nextTo: filePath, forType: type(of: snapshottable))
+    func retrieveSnapshot(of snapshottable: Snapshottable, filePath: String = #file, function: String = #function) throws -> UIImage {
+        let callingMethod = function.replacingOccurrences(of: "()", with: "")
+        let retrieveFromURL = try SnapshotFileURLBuilder()
+            .build(
+                nextTo: filePath,
+                forType: type(of: snapshottable),
+                callingMethod: callingMethod
+            )
 
         guard let imageData = fileManager.contents(atPath: retrieveFromURL.path) else {
             throw SnapshotRetrieverError.imageRetrievalError

@@ -35,7 +35,7 @@ final class SnapshotRetrieverTests: XCTestCase {
             orientation: .up
         )
         let expectedImageData = expectedImage.pngData()!
-        try expectedImageData.write(to: URL(fileURLWithPath: snapshotDir + "/MockSnapshottable.png"))
+        try expectedImageData.write(to: URL(fileURLWithPath: snapshotDir + "/MockSnapshottable_testRetrieveSnapshot_existingSnapshot_returnsImage.png"))
 
         let actualImage = try retriever.retrieveSnapshot(of: MockSnapshottable(), filePath: snapshotDir)
 

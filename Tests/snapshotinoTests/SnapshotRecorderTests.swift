@@ -36,7 +36,7 @@ final class SnapshotRecorderTests: XCTestCase {
 
     func testRecordValidSnapshot() throws {
         let image = UIImage(systemName: "star")!
-        let expectedFileName = "UIImage.png"
+        let expectedFileName = "UIImage_testRecordValidSnapshot.png"
         let expectedDirectoryPath = tempDirectory.appendingPathComponent("__snapshots__").path
 
         let snapshotFilePath = tempDirectory.appendingPathComponent("TestViewController.swift")

@@ -23,27 +23,45 @@ final class SnapshotFileURLBuilderTests: XCTestCase {
     func testBuildSnapshotFileURL() throws {
         let filePath = tempDirectory.appendingPathComponent("test/image.png").path
 
-        let url = try builder.build(nextTo: filePath, forType: SnapshotFileURLBuilderTests.self)
+        let callingMethod = #function.replacingOccurrences(of: "()", with: "")
+        let url = try builder.build(
+            nextTo: filePath,
+            forType: SnapshotFileURLBuilderTests.self,
+            callingMethod: callingMethod
+        )
 
-        XCTAssertEqual(url.path, "\(tempDirectory.path)/test/__snapshots__/SnapshotFileURLBuilderTests.png")
+        XCTAssertEqual(url.path, "\(tempDirectory.path)/test/__snapshots__/SnapshotFileURLBuilderTests_testBuildSnapshotFileURL.png")
         XCTAssertFalse(fileManager.fileExists(atPath: url.deletingLastPathComponent().path))
     }
 
     func testBuildSnapshotFileURLWithMissingDirectory() throws {
         let filePath = tempDirectory.appendingPathComponent("test/image.png").path
 
-        let url = try builder.build(nextTo: filePath, forType: SnapshotFileURLBuilderTests.self, subDirectory: "missing")
+        let callingMethod = #function.replacingOccurrences(of: "()", with: "")
+        let url = try builder.build(
+            nextTo: filePath,
+            forType: SnapshotFileURLBuilderTests.self,
+            callingMethod: callingMethod,
+            subDirectory: "missing"
+        )
 
-        XCTAssertEqual(url.path, "\(tempDirectory.path)/test/missing/SnapshotFileURLBuilderTests.png")
+        XCTAssertEqual(url.path, "\(tempDirectory.path)/test/missing/SnapshotFileURLBuilderTests_testBuildSnapshotFileURLWithMissingDirectory.png")
         XCTAssertFalse(fileManager.fileExists(atPath: url.deletingLastPathComponent().path))
     }
 
     func testBuildSnapshotFileURLWithMissingDirectoryAndCreateSubdirectory() throws {
         let filePath = tempDirectory.appendingPathComponent("test/image.png").path
 
-        let url = try builder.build(nextTo: filePath, forType: SnapshotFileURLBuilderTests.self, subDirectory: "missing", createSubdirectoryIfMissing: true)
+        let callingMethod = #function.replacingOccurrences(of: "()", with: "")
+        let url = try builder.build(
+            nextTo: filePath,
+            forType: SnapshotFileURLBuilderTests.self,
+            callingMethod: callingMethod,
+            subDirectory: "missing",
+            createSubdirectoryIfMissing: true
+        )
 
-        XCTAssertEqual(url.path, "\(tempDirectory.path)/test/missing/SnapshotFileURLBuilderTests.png")
+        XCTAssertEqual(url.path, "\(tempDirectory.path)/test/missing/SnapshotFileURLBuilderTests_testBuildSnapshotFileURLWithMissingDirectoryAndCreateSubdirectory.png")
         XCTAssertTrue(fileManager.fileExists(atPath: url.deletingLastPathComponent().path))
         try fileManager.removeItem(at: tempDirectory)
     }

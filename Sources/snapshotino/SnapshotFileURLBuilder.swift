@@ -21,6 +21,8 @@ struct SnapshotFileURLBuilder {
     ///     Ideally, this is the path of the test file so that the snapshots are placed
     ///     in the same directory as the test file.
     ///   - type: The Swift type of the object being snapshotted. It is used to create the file name.
+    ///   - callingMethod: The name of the method that is recording/retrieving the snapshot.
+    ///     This value is appended to the snapshot file name.
     ///   - subDirectory: Optional subdirectory name. Defaults to `__snapshots__`.
     ///   - createSubdirectoryIfMissing: Whether to create the subdirectory if it is missing.
     ///
@@ -28,6 +30,7 @@ struct SnapshotFileURLBuilder {
     func build(
         nextTo filePath: String,
         forType type: Any.Type,
+        callingMethod: String,
         subDirectory: String = "__snapshots__",
         createSubdirectoryIfMissing: Bool = false
     ) throws -> URL {
@@ -48,6 +51,7 @@ struct SnapshotFileURLBuilder {
 
         let fileName = TypeNameExtractor
             .extract(from: "\(type)")
+            .appending("_\(callingMethod)")
             .appending(".png")
 
         return URL(fileURLWithPath: directory)
